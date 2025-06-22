@@ -19,33 +19,27 @@ and install some Python packages that will be useful in your interviews.
 > If for some reason you must use Python 2.7,
 > use [virtualenv] to create the virtual environment.
 
-**Create a new virtual environment** called `interview_env` and _activate_ it.
+**Create a new virtual environment** called `.interview_env` and _activate_ it.
 
 ```bash
-$ python3 -m venv ./interview_env
-$ source ./interview_env/bin/activate
+$ python3 -m venv ./.interview_env
+$ source ./.interview_env/bin/activate
 ```
 
 The `activate` script is for Bash and Zsh on Mac or Linux.
 For other shells, such as Fish or Csh, see the [venv] documentation.
 
-On Windows (assuming `cmd.exe`):
-
-```batch
-> python3 -m venv .\interview_env
-> .\interview_env\Scripts\activate
-```
 
 Next, **install some requirements** into the activated virtual environment:
 
 ```bash
-(interview_env) $ pip install -r interview_requirements.txt
+(.interview_env) $ pip install -r interview_requirements.txt
 ```
 
 Finally, in that activated virtual environment, verify that your environment supports [TLS 1.2] or later:
 
 ```bash
-(interview_env) $ python verify_tls.py
+(.interview_env) $ python verify_tls.py
 TLS 1.2 supported; no action required.
 ```
 

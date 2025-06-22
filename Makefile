@@ -8,7 +8,7 @@ run:
 clean:
 	@read -p "Make sure you have exited the virtual environment before running 'make clean'. Proceed? (y/n): " confirm && [ "$$confirm" = "y" ]
 	find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
-	rm -rf __pycache__/ *.pyc *.pyo .pytest_cache .ruff_cache .venv
+	rm -rf __pycache__/ *.pyc *.pyo .pytest_cache .ruff_cache .interview_env
 
 # Format files, need to be run in the virtual environment.
 .PHONY: format
