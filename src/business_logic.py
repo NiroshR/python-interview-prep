@@ -1,5 +1,7 @@
+import json
 import time
-
+from urllib3.util.retry import Retry
+from urllib3 import PoolManager
 
 def some_decorator(_: None = None):
     def decorator(func):
@@ -19,8 +21,21 @@ def some_decorator(_: None = None):
 
 @some_decorator()
 def some_function():
-    time.sleep(1)
     print("here")
+
+    retries = Retry(total=3, backoff_factor=1, status_forcelist=[500, 502, 503])
+    # Connection is reused → faster + scalable
+    http = PoolManager(retries=retries)
+    # _ = http.request("GET", "https://httpbin.org/status/500")
+
+    resp = http.request(
+        "POST",
+        "https://httpbin.org/post",
+        fields={"hello": "world"} #  Add custom form fields
+    )
+
+    data = json.loads(resp.data)
+    print(data)
 
 
 def multiply_by_two(x: int) -> int:
